@@ -111,7 +111,7 @@ function sameWall(a: WallTime, b: WallTime): boolean {
   );
 }
 
-interface DstTransition {
+export interface DstTransition {
   day: number; // day-of-month the transition lands on
   month: number; // 1-12
   type: "spring-forward" | "fall-back";
@@ -141,6 +141,18 @@ function findDstTransitions(year: number, timeZone: string): DstTransition[] {
     }
   }
   return transitions;
+}
+
+/**
+ * Public wrapper: the daylight-saving transitions (spring-forward / fall-back)
+ * for a timezone in a given year. Lets calendar/timeline UIs badge the days
+ * where wall-clock-time schedules can skip or double-fire.
+ */
+export function getDstTransitions(
+  year: number,
+  timeZone: string,
+): DstTransition[] {
+  return findDstTransitions(year, timeZone);
 }
 
 // ---------------------------------------------------------------------------
