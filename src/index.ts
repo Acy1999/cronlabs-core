@@ -21,3 +21,19 @@ export { detectEdgeCases, getDstTransitions } from "./edge-cases";
 export type { DetectOptions, DstTransition } from "./edge-cases";
 export { runsInRange } from "./range";
 export type { RunsInRange, RunsInRangeOptions } from "./range";
+
+export {
+  convertCron,
+  convertAll,
+  CONVERSION_TARGETS,
+  expandDayOfWeek,
+  compressRanges,
+} from "./convert";
+export type {
+  Conversion,
+  ConversionTarget,
+  ConversionTargetId,
+  ConversionNote,
+  ConversionFormat,
+  ConvertOptions,
+} from "./convert";
