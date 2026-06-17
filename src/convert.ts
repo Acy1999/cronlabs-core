@@ -311,12 +311,12 @@ function buildSixFieldDayFields(parts: CronParts, platform: string) {
       dowConverted = mapped;
       notes.push({
         severity: "warning",
-        message: `${platform} numbers days-of-week 1-7 with 1=Sunday (not 0-6). The day-of-week field was reindexed automatically.`,
+        message: `${platform} numbers days-of-week 1-7, where 1=Sunday. The day-of-week field was reindexed from the standard 0-6 numbering automatically.`,
       });
     } else {
       notes.push({
         severity: "warning",
-        message: `Couldn't auto-convert the day-of-week field. ${platform} uses 1-7 (1=Sunday) — verify it manually.`,
+        message: `Couldn't auto-convert the day-of-week field. ${platform} uses 1-7 (1=Sunday). Verify it manually.`,
       });
     }
   }
@@ -330,7 +330,7 @@ function buildSixFieldDayFields(parts: CronParts, platform: string) {
   if (bothRestricted) {
     notes.push({
       severity: "error",
-      message: `${platform} can't match both day-of-month AND day-of-week. Converted to day-of-month only — split into two schedules if you need both.`,
+      message: `${platform} can't match both day-of-month AND day-of-week. Converted to day-of-month only. Split into two schedules if you need both.`,
     });
   } else {
     notes.push({
@@ -370,7 +370,7 @@ const BUILDERS: Record<ConversionTargetId, Builder> = {
     if (ctx.timezone !== "UTC") {
       notes.push({
         severity: "warning",
-        message: `GitHub Actions ignores timezones — convert your ${ctx.timezone} times to UTC before using this schedule.`,
+        message: `GitHub Actions ignores timezones. Convert your ${ctx.timezone} times to UTC before using this schedule.`,
       });
     }
     const step = minuteStep(parts.minute);
@@ -398,7 +398,7 @@ const BUILDERS: Record<ConversionTargetId, Builder> = {
     } else if (isFixedInt(parts.minute) && parts.minute !== "0") {
       notes.push({
         severity: "info",
-        message: "On Hobby, daily crons fire at some point within the hour, not the exact minute specified.",
+        message: "On Hobby, daily crons fire at some point within the scheduled hour. The exact minute is approximate.",
       });
     }
     const snippet = `{\n  "crons": [\n    {\n      "path": "${path}",\n      "schedule": "${schedule}"\n    }\n  ]\n}`;
@@ -473,7 +473,7 @@ const BUILDERS: Record<ConversionTargetId, Builder> = {
     });
     notes.push({
       severity: "warning",
-      message: "Spring's @Scheduled uses a different dialect — day-of-week 0-7 (0/7=Sunday) and '*' is allowed in both day fields. Use the Spring line below for Spring.",
+      message: "Spring's @Scheduled uses a different dialect. It numbers day-of-week 0-7 (0/7=Sunday) and allows '*' in both day fields. Use the Spring line below for Spring.",
     });
     const snippet = `// Quartz CronTrigger\nCronScheduleBuilder.cronSchedule("${schedule}");\n\n// Spring @Scheduled (different day-of-week numbering)\n@Scheduled(cron = "0 ${parts.minute} ${parts.hour} ${parts.dayOfMonth} ${parts.month} ${parts.dayOfWeek}", zone = "${ctx.timezone}")`;
     return { schedule, snippet, format: "java", notes };
@@ -494,7 +494,7 @@ const BUILDERS: Record<ConversionTargetId, Builder> = {
     const notes: ConversionNote[] = [
       {
         severity: "info",
-        message: "Celery uses crontab() keyword arguments, not a single string. Day-of-week is 0-6 (0=Sunday) or names — same as standard cron.",
+        message: "Celery schedules use crontab() keyword arguments instead of a single cron string. Day-of-week is 0-6 (0=Sunday) or names, the same as standard cron.",
       },
     ];
     void ctx;
