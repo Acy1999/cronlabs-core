@@ -1,4 +1,4 @@
-import { splitFields, type CronParts } from "./fields";
+import { splitFields, type CronParts } from "./fields.js";
 
 /**
  * Universal cron converter. Translates a standard 5-field Unix/Vixie cron

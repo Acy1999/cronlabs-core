@@ -1,5 +1,5 @@
-import type { EdgeCase } from "./types";
-import { splitFields } from "./fields";
+import type { EdgeCase } from "./types.js";
+import { splitFields } from "./fields.js";
 
 const MS_PER_MINUTE = 60_000;
 const MS_PER_HOUR = 3_600_000;

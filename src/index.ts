@@ -11,16 +11,16 @@ export type {
   CronValidation,
   EdgeCase,
   ValidateCronOptions,
-} from "./types";
+} from "./types.js";
 
-export { validateCron, matchesPattern } from "./validate";
-export { describeCron } from "./describe";
-export { parseCronFields, splitFields, CRON_FIELDS } from "./fields";
-export type { CronParts } from "./fields";
-export { detectEdgeCases, getDstTransitions } from "./edge-cases";
-export type { DetectOptions, DstTransition } from "./edge-cases";
-export { runsInRange } from "./range";
-export type { RunsInRange, RunsInRangeOptions } from "./range";
+export { validateCron, matchesPattern } from "./validate.js";
+export { describeCron } from "./describe.js";
+export { parseCronFields, splitFields, CRON_FIELDS } from "./fields.js";
+export type { CronParts } from "./fields.js";
+export { detectEdgeCases, getDstTransitions } from "./edge-cases.js";
+export type { DetectOptions, DstTransition } from "./edge-cases.js";
+export { runsInRange } from "./range.js";
+export type { RunsInRange, RunsInRangeOptions } from "./range.js";
 
 export {
   convertCron,
@@ -28,7 +28,7 @@ export {
   CONVERSION_TARGETS,
   expandDayOfWeek,
   compressRanges,
-} from "./convert";
+} from "./convert.js";
 export type {
   Conversion,
   ConversionTarget,
@@ -36,4 +36,4 @@ export type {
   ConversionNote,
   ConversionFormat,
   ConvertOptions,
-} from "./convert";
+} from "./convert.js";

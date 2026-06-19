@@ -1,7 +1,7 @@
 import { Cron } from "croner";
-import type { CronValidation, ValidateCronOptions } from "./types";
-import { describeCron } from "./describe";
-import { detectEdgeCases } from "./edge-cases";
+import type { CronValidation, ValidateCronOptions } from "./types.js";
+import { describeCron } from "./describe.js";
+import { detectEdgeCases } from "./edge-cases.js";
 
 const ONE_MINUTE_MS = 60_000;
 

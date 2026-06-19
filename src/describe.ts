@@ -1,4 +1,4 @@
-import { splitFields } from "./fields";
+import { splitFields } from "./fields.js";
 
 const MONTHS = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",

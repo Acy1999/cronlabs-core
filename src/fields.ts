@@ -1,4 +1,4 @@
-import type { CronField } from "./types";
+import type { CronField } from "./types.js";
 
 /** The five standard cron fields, in order, with their valid ranges. */
 export const CRON_FIELDS = [
